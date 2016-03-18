@@ -2,6 +2,7 @@ import {Provides, Inject} from '../lib/decorators'
 import {Injector} from '../lib/injector'
 
 class MyModule {
+	
 	@Provides('Aloha')
 	getAloha() {
 		return 'Tjingeling'
