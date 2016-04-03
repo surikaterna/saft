@@ -8,7 +8,7 @@ class MyModule {
 		return 'Tjingeling'
 	}
 }
-
+/*
 describe('Injector', function() {
 	describe('Provides', function() {
 		it('should return correct instance', function() {
@@ -17,6 +17,7 @@ describe('Injector', function() {
 		});
 	});
 });
+*/
 /*
 
 console.log(i);
