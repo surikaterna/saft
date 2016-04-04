@@ -1,12 +1,16 @@
-import {Provides, Inject} from '../lib/decorators'
-import {Injector} from '../lib/injector'
+import { Provides, Inject } from '../lib/decorators'
+import { Injector } from '../lib/injector'
 
+@Inject('asas', 'bbb')
 class MyModule {
-	
-	@Provides('Aloha')
-	getAloha() {
-		return 'Tjingeling'
-	}
+  constructor(a) {
+    
+  }
+//  @Provides('Aloha')
+//  @Inject('ibb', 'icc')
+  getAloha(bb, cc) {
+    return 'Tjingeling'
+  }
 }
 /*
 describe('Injector', function() {
