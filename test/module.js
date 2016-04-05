@@ -1,19 +1,15 @@
 import { Provides, Inject } from '../lib/decorators'
 import { Injector } from '../lib/injector'
 
-@Inject('asas', 'bbb')
 class MyModule {
-  constructor(a) {
-    
-  }
-//  @Provides('Aloha')
-//  @Inject('ibb', 'icc')
-  getAloha(bb, cc) {
+
+  @Provides('Aloha')
+  getAloha() {
     return 'Tjingeling'
   }
 }
-/*
-describe('Injector', function() {
+
+describe.only('Injector', function() {
 	describe('Provides', function() {
 		it('should return correct instance', function() {
 			let injector = new Injector(new MyModule());
@@ -21,7 +17,7 @@ describe('Injector', function() {
 		});
 	});
 });
-*/
+
 /*
 
 console.log(i);
