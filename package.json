@@ -1,5 +1,5 @@
 {
-  "name": "nuice",
+  "name": "saft",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,6 +19,7 @@
     "should": "^8.3.0"
   },
   "dependencies": {
+    "bluebird": "^3.3.5",
     "debug": "^2.2.0",
     "harmony-reflect": "^1.4.3",
     "reflect-metadata": "^0.1.3"
