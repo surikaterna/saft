@@ -4,9 +4,9 @@ import should from 'should';
 
 
 
-describe('Injector', function () {
-  describe('Provides', function () {
-    it('should return correct instance', function () {
+describe('Injector', () => {
+  describe('Provides', () => {
+    it('should return correct instance', () => {
       class MyModule {
         @Provides('Aloha')
         getAloha() {
@@ -16,7 +16,7 @@ describe('Injector', function () {
       const injector = new Injector(new MyModule());
       injector.get('Aloha').should.equal('Tjingeling');
     });
-    it('should return correct instance with multiple provides', function () {
+    it('should return correct instance with multiple provides', () => {
       class MyModule {
         @Provides('Aloha')
         getAloha() {
@@ -31,7 +31,7 @@ describe('Injector', function () {
       injector.get('Aloha').should.equal('Tjingeling');
       injector.get('Hawaii').should.equal('Tjo');
     });
-    it('should call provides method with correct this', function () {
+    it('should call provides method with correct this', () => {
       class MyModule {
         constructor(message) {
           this._message = message;
@@ -44,7 +44,7 @@ describe('Injector', function () {
       const injector = new Injector(new MyModule('Hi Ho'));
       injector.get('Aloha').should.equal('Hi Ho');
     });
-    it('should throw when Provides function needs arguments but no Inject', function () {
+    it('should throw when Provides function needs arguments but no Inject', () => {
       class MyModule {
         @Provides('Hello')
         getHelloWorld(aloha) {
@@ -56,7 +56,7 @@ describe('Injector', function () {
         injector.get('Hello');
       });
     });
-    it('should throw when Provides has more params then Inject specifies', function () {
+    it('should throw when Provides has more params then Inject specifies', () => {
       class MyModule {
         @Provides('Hello')
         @Inject('test')
@@ -69,7 +69,7 @@ describe('Injector', function () {
         injector.get('Hello');
       });
     });
-    it('should inject dependencies to provides method', function () {
+    it('should inject dependencies to provides method', () => {
       class MyModule {
         @Provides('Aloha')
         getAloha() {
@@ -84,7 +84,7 @@ describe('Injector', function () {
       const injector = new Injector(new MyModule());
       injector.get('Hello').should.equal('Tjo Tjingeling');
     });
-    it('should inject dependencies as provider to provides method', function () {
+    it('should inject dependencies as provider to provides method', () => {
       class MyModule {
         @Provides('Aloha')
         getAloha() {

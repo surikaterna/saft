@@ -1,10 +1,8 @@
-import { Provides, Inject, Provider } from '../lib/decorators';
+import { Provides, Inject, Provider, Promises } from '../lib/decorators';
 import { Injector } from '../lib/injector';
 import * as Promise from 'bluebird';
 
 // async goodness
-// 
-
 describe.only('InjectorAsync', function () {
   describe('Provides', function () {
     it('should return promise', function (done) {
@@ -22,7 +20,7 @@ describe.only('InjectorAsync', function () {
     });
     it('should resolve promise before injecting to next step', (done) => {
       class MyModule {
-        @Provides('Aloha')
+        @Promises('Aloha')
         getAloha() {
           return Promise.resolve('Tjingeling');
         }
