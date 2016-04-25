@@ -3,7 +3,7 @@ import { Injector } from '../lib/injector';
 import * as Promise from 'bluebird';
 
 // async goodness
-describe.only('InjectorAsync', function () {
+describe('InjectorAsync', function () {
   describe('Provides', function () {
     it('should return promise', function (done) {
       class MyModule {
@@ -18,7 +18,7 @@ describe.only('InjectorAsync', function () {
         done();
       });
     });
-    it.only('should resolve promise before injecting to next step', (done) => {
+    it('should resolve promise before injecting to next step', (done) => {
       class MyModule {
         @Promises('Aloha')
         getAloha() {
