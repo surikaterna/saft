@@ -3,9 +3,9 @@ import { Injector } from '../lib/injector';
 import * as Promise from 'bluebird';
 
 // async goodness
-describe('InjectorAsync', function () {
-  describe('Provides', function () {
-    it('should return promise', function (done) {
+describe('InjectorAsync', () => {
+  describe('Provides', () => {
+    it('should return promise', (done) => {
       class MyModule {
         @Provides('Aloha')
         getAloha() {
