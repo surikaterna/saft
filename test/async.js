@@ -1,4 +1,4 @@
-import { Provides, Inject, Provider, Promises } from '../lib/decorators';
+import { Provides, Inject, Promises } from '../lib/decorators';
 import { Injector } from '../lib/injector';
 import * as Promise from 'bluebird';
 

@@ -2,8 +2,6 @@ import { Provides, Inject, Provider } from '../lib/decorators';
 import { Injector } from '../lib/injector';
 import should from 'should';
 
-
-
 describe('Injector', () => {
   describe('Provides', () => {
     it('should return correct instance', () => {
