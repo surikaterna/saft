@@ -18,7 +18,7 @@ describe.only('InjectorAsync', function () {
         done();
       });
     });
-    it('should resolve promise before injecting to next step', (done) => {
+    it.only('should resolve promise before injecting to next step', (done) => {
       class MyModule {
         @Promises('Aloha')
         getAloha() {
