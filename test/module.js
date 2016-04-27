@@ -1,4 +1,4 @@
-import { Provides, Inject, Provider } from '../lib/decorators';
+import { Provides, Inject, Provider, Singleton } from '../lib/decorators';
 import { Injector } from '../lib/injector';
 import should from 'should';
 
@@ -96,6 +96,22 @@ describe('Injector', () => {
       }
       const injector = new Injector(new MyModule());
       injector.get('Hello').should.equal('Tjo Tjingeling');
+    });
+    it('should inject same instance for Singleton', () => {
+      class MyModule {
+        constructor() {
+          this._id = 11;
+        }
+        @Provides('counter')
+        @Singleton()
+        getCounter() {
+          return this._id++;
+        }
+      }
+      const injector = new Injector(new MyModule());
+      const c1 = injector.get('counter');
+      const c2 = injector.get('counter');
+      c1.should.equal(c2);
     });
   });
 });
