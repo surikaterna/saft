@@ -1,5 +1,4 @@
-import { Provides, Inject, Provider, Singleton } from '../lib/decorators';
-import { Injector } from '../lib/injector';
+import { Provides, Inject, Provider, Singleton, Injector } from '..';
 import should from 'should';
 
 describe('Injector', () => {
