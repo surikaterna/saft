@@ -1,5 +1,4 @@
-import { Provides, Inject, Provider, Singleton } from '../lib/decorators';
-import { Injector } from '../lib/injector';
+import { Provides, Inject, Provider, Singleton, Injector } from '..';
 import should from 'should';
 
 describe('Injector', () => {
@@ -112,6 +111,14 @@ describe('Injector', () => {
       const c1 = injector.get('counter');
       const c2 = injector.get('counter');
       c1.should.equal(c2);
+    });
+    it('should call configure on module', (done) => {
+      class MyModule {
+        configure() {
+          done();
+        }
+      }
+      new Injector(new MyModule());
     });
   });
 });

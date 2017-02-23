@@ -15,13 +15,29 @@ npm install --save saft
 Used with Module classes to create a binding for a function that returns a value
 ```javascript
 class MyModule {
-	@Provides('my-db')
+    @Provides('my-db')
     getDb() {
     	return new Db();
     }
 }
 
 //Injector know how to create instances of DB with the key 'my-db'
+new Injector(new MyModule());
+
+```
+
+### @Singleton
+Used to ensure single instance
+```javascript
+class MyModule {
+    @Provides('my-db')
+    @Singleton()
+    getDb() {
+    	return new Db();
+    }
+}
+
+//Injector now we always get the same instance when @injecting key 'my-db'
 new Injector(new MyModule());
 
 ```
@@ -47,7 +63,7 @@ Put on a class to show that in expects things to be injected
 
 ```javascript
 class MyModule {
-	@Promises('my-db')
+    @Promises('my-db')
     getDb() {
     	return Promise.resolve(new Db());
     }
@@ -55,12 +71,12 @@ class MyModule {
 
 @Inject('my-db')
 class Consumer {
-	constructor(db) {
+    constructor(db) {
     }
 }
-```
 //Injector know how to create instances of DB with the key 'my-db'
 new Injector(new MyModule());
+```
 
 
 
