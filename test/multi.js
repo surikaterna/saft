@@ -56,21 +56,21 @@ describe('Injector', () => {
     });
     it.only('should allow to bind multiple values to Key with annotation', () => {
       class MyModule {
-        @ProvidesList('myList')
+        @ProvidesListItem('myList')
         getItem() {
-          return 'Hello' 
+          return 'Hello'
         }
       }
 
       class MySecondModule {
-        @ProvidesList('myList')
+        @ProvidesListItem('myList')
         getItem() {
-          return 'World' 
+          return 'World'
         }
       }
 
       const injector = new Injector(new MyModule(), new MySecondModule());
       injector.get('myList').length.should.equal(2);
     });
-  });  
+  });
 });
