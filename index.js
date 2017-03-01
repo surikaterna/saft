@@ -6,5 +6,6 @@ module.exports = {
   Promises: require('./lib/decorators').Promises,
   Injector: require('./lib/injector').Injector,
   ProvidesToList: require('./lib/decorators').ProvidesToList,
+  ProvidesToMap: require('./lib/decorators').ProvidesToMap,
   ListBinder: require('./lib/binder/list_binder').ListBinder,
 };
