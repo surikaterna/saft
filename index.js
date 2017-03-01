@@ -4,5 +4,6 @@ module.exports = {
   Provider: require('./lib/decorators').Provider,
   Singleton: require('./lib/decorators').Singleton,
   Promises: require('./lib/decorators').Promises,
-  Injector: require('./lib/injector').Injector
+  Injector: require('./lib/injector').Injector,
+  ProvidesToList: require('./lib/decorators').ProvidesToList,
 };
