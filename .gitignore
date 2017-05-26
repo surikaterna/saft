@@ -35,3 +35,6 @@ jspm_packages
 
 # IntelliJ project files
 /.idea
+
+# ES5 version
+/lib
