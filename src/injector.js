@@ -17,6 +17,12 @@ export class Injector {
 
   }
 
+  createChildInjector(...modules) {
+    const childInjector = new Injector(...modules);
+    childInjector._parent = this;
+    childInjector._binder.setParent(this._binder);
+    return childInjector;
+  }
 	/*
 		TODO: right now only support constructor injection, maybe later to enable easier testing
 		injectMembers(instance) {

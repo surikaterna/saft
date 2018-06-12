@@ -50,6 +50,10 @@ export class Binder {
     throw new Error('not supported');
   }
 
+  setParent(parent) {
+    this._parent = parent;
+  }
+
   getBinding(key) {
     let binding = this._bindings.get(key);
     if (!binding && this._parent) {
