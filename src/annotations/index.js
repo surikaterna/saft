@@ -10,7 +10,7 @@ class Annotations {
   }
   static getAnnotations(AnnotationType, target, key) {
     const annotations = Reflect.getMetadata('annotations', target, key) || [];
-    const result = annotations.filter(x => (x instanceof AnnotationType));
+    const result = annotations.filter(x => (x instanceof AnnotationType || (Object.getPrototypeOf(x.constructor).name === AnnotationType.name)));
     return result;
   }
   static hasAnnotation(AnnotationType, target, key) {
