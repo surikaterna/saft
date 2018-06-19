@@ -23,6 +23,7 @@
     "should": "^8.3.0"
   },
   "dependencies": {
-    "bluebird": "^3.3.5"
+    "bluebird": "^3.3.5",
+    "eventemitter2": "^5.0.1"
   }
 }

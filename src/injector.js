@@ -1,15 +1,29 @@
 import { Binder } from './binder/binder';
 import { Resolver } from './resolver';
 import { Key } from './key';
+import { EagerSingletonAnnotation } from './annotations/index';
+import { EventEmitter2 } from 'Eventemitter2';
+import Promise from 'bluebird';
 
-export class Injector {
+
+export class Injector extends EventEmitter2 {
   constructor(...modules) {
+    super();
     this._modules = modules;
     this._binder = new Binder(modules);
     this._resolver = new Resolver(this._binder);
     // create binder
     // send modules to binder
     // resolve
+    const promises = [];
+    this._binder._bindings.forEach((binding) => {
+      if (binding.getScope() instanceof EagerSingletonAnnotation) {
+        promises.push(this.get(binding._key));
+      }
+    });
+    Promise.all(promises).then(() => {
+      this.emit('ready');
+    });
     this._isSync = false;
   }
 
