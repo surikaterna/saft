@@ -1,5 +1,5 @@
 import { InjectableAnnotation, InjectAnnotation, ProvidesAnnotation,
-   Annotations, PromisesAnnotation, SingletonAnnotation, ProvidesToListAnnotation, ProvidesToMapAnnotation }
+   Annotations, PromisesAnnotation, SingletonAnnotation, EagerSingletonAnnotation, ProvidesToListAnnotation, ProvidesToMapAnnotation }
 from './annotations';
 import { Key } from './key';
 
@@ -23,6 +23,8 @@ export const Provides = decoratorFactory(ProvidesAnnotation);
 export const Promises = decoratorFactory(PromisesAnnotation);
 
 export const Singleton = decoratorFactory(SingletonAnnotation);
+
+export const EagerSingleton = decoratorFactory(EagerSingletonAnnotation);
 
 // Angularized
 export const Injectable = decoratorFactory(InjectableAnnotation);

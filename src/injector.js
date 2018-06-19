@@ -1,6 +1,7 @@
 import { Binder } from './binder/binder';
 import { Resolver } from './resolver';
 import { Key } from './key';
+import { EagerSingletonAnnotation } from './annotations/index';
 
 export class Injector {
   constructor(...modules) {
@@ -10,6 +11,11 @@ export class Injector {
     // create binder
     // send modules to binder
     // resolve
+    this._binder._bindings.forEach((binding) => {
+      if (binding.getScope() instanceof EagerSingletonAnnotation) {
+        this.get(binding._key);
+      }
+    });
     this._isSync = false;
   }
 

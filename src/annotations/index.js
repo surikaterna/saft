@@ -80,6 +80,10 @@ class SingletonAnnotation {
   }
 }
 
+class EagerSingletonAnnotation extends SingletonAnnotation {
+}
+
+
 class ProvidesAnnotation extends BindingAnnotation {
   bind(binder, target, targetKey) {
     const provide = this;
@@ -156,5 +160,5 @@ function MyAnnotation(options): Decorator {
 export {
   InjectAnnotation, ProvidesAnnotation, InjectableAnnotation,
   Annotations, PromisesAnnotation, SingletonAnnotation, BindingAnnotation, ProvidesToListAnnotation,
-  ProvidesToMapAnnotation,
+  ProvidesToMapAnnotation, EagerSingletonAnnotation
 };
