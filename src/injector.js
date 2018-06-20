@@ -2,7 +2,7 @@ import { Binder } from './binder/binder';
 import { Resolver } from './resolver';
 import { Key } from './key';
 import { EagerSingletonAnnotation } from './annotations/index';
-import { EventEmitter2 } from 'Eventemitter2';
+import { EventEmitter2 } from 'eventemitter2';
 import Promise from 'bluebird';
 
 
