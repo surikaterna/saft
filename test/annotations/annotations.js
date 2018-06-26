@@ -1,4 +1,4 @@
-import { Annotations } from '../../lib/annotations';
+import { Annotations } from '../../src/annotations';
 import {} from 'should';
 
 class Annot {
