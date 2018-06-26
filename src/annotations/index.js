@@ -10,7 +10,8 @@ class Annotations {
   }
   static getAnnotations(AnnotationType, target, key) {
     const annotations = Reflect.getMetadata('annotations', target, key) || [];
-    const result = annotations.filter(x => (x instanceof AnnotationType));
+    const result = annotations.filter(x => (x instanceof AnnotationType
+      || (Object.getPrototypeOf(x.constructor)._name && Object.getPrototypeOf(x.constructor)._name === AnnotationType._name)));
     return result;
   }
   static hasAnnotation(AnnotationType, target, key) {
@@ -42,12 +43,14 @@ class InjectAnnotation {
     return this._keys;
   }
 }
+InjectAnnotation._name = 'InjectAnnotation';
 
 class InjectableAnnotation {
   constructor() {
 
   }
 }
+InjectableAnnotation._name = 'InjectableAnnotation';
 
 class BindingAnnotation {
   constructor(key, asPromise = false) {
@@ -65,6 +68,7 @@ class BindingAnnotation {
     throw new Error('Binding needs to override bind()');
   }
 }
+InjectableAnnotation._name = 'InjectableAnnotation';
 
 class SingletonAnnotation {
   scope(key, unscopedProvider) {
@@ -79,6 +83,7 @@ class SingletonAnnotation {
     };
   }
 }
+SingletonAnnotation._name = 'SingletonAnnotation';
 
 class ProvidesAnnotation extends BindingAnnotation {
   bind(binder, target, targetKey) {
@@ -110,6 +115,7 @@ class ProvidesAnnotation extends BindingAnnotation {
     }
   }
 }
+ProvidesAnnotation._name = 'ProvidesAnnotation';
 
 class ProvidesToListAnnotation extends BindingAnnotation {
   constructor(key, sortOrder, asPromise) {
@@ -123,6 +129,7 @@ class ProvidesToListAnnotation extends BindingAnnotation {
     new ProvidesAnnotation(itemKey, this._asPromise).bind(listBinder, target, targetKey);
   }
 }
+ProvidesToListAnnotation._name = 'ProvidesToListAnnotation';
 
 class ProvidesToMapAnnotation extends BindingAnnotation {
   constructor(key, itemKey, asPromise) {
@@ -138,6 +145,7 @@ class ProvidesToMapAnnotation extends BindingAnnotation {
     new ProvidesAnnotation(this._itemKey, this._asPromise).bind(mapBinder, target, targetKey);
   }
 }
+ProvidesToMapAnnotation._name = 'ProvidesToMapAnnotation';
 
 
 class PromisesAnnotation extends ProvidesAnnotation {
@@ -145,6 +153,7 @@ class PromisesAnnotation extends ProvidesAnnotation {
     super(key, true);
   }
 }
+PromisesAnnotation._name = 'PromisesAnnotation';
 
 
 
@@ -156,5 +165,5 @@ function MyAnnotation(options): Decorator {
 export {
   InjectAnnotation, ProvidesAnnotation, InjectableAnnotation,
   Annotations, PromisesAnnotation, SingletonAnnotation, BindingAnnotation, ProvidesToListAnnotation,
-  ProvidesToMapAnnotation,
+  ProvidesToMapAnnotation
 };
