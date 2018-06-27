@@ -68,7 +68,7 @@ class BindingAnnotation {
     throw new Error('Binding needs to override bind()');
   }
 }
-InjectableAnnotation._name = 'InjectableAnnotation';
+BindingAnnotation._name = 'BindingAnnotation';
 
 class SingletonAnnotation {
   scope(key, unscopedProvider) {
