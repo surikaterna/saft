@@ -1,5 +1,4 @@
 import { Provides, Inject, Provider, Singleton, Injector } from '..';
-import should from 'should';
 
 describe('Injector', () => {
   describe('Provides', () => {
@@ -11,7 +10,7 @@ describe('Injector', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('Aloha').should.equal('Tjingeling');
+      expect(injector.get('Aloha')).toBe('Tjingeling');
     });
     it('should return correct instance with multiple provides', () => {
       class MyModule {
@@ -25,8 +24,9 @@ describe('Injector', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('Aloha').should.equal('Tjingeling');
-      injector.get('Hawaii').should.equal('Tjo');
+
+      expect(injector.get('Aloha')).toBe('Tjingeling');
+      expect(injector.get('Hawaii')).toBe('Tjo');
     });
     it('should call provides method with correct this', () => {
       class MyModule {
@@ -39,7 +39,7 @@ describe('Injector', () => {
         }
       }
       const injector = new Injector(new MyModule('Hi Ho'));
-      injector.get('Aloha').should.equal('Hi Ho');
+      expect(injector.get('Aloha')).toBe('Hi Ho');
     });
     it('should throw when Provides function needs arguments but no Inject', () => {
       class MyModule {
@@ -48,23 +48,23 @@ describe('Injector', () => {
           return `Tjo ${aloha}`;
         }
       }
-      should.throws(() => {
+      expect(() => {
         const injector = new Injector(new MyModule());
         injector.get('Hello');
-      });
+      }).toThrow();
     });
     it('should throw when Provides has more params then Inject specifies', () => {
       class MyModule {
         @Provides('Hello')
         @Inject('test')
-        getHelloWorld(aloha, aloha2) {
+        getHelloWorld(aloha) {
           return `Tjo ${aloha}`;
         }
       }
-      should.throws(() => {
+      expect(() => {
         const injector = new Injector(new MyModule());
         injector.get('Hello');
-      });
+      }).toThrow()
     });
     it('should inject dependencies to provides method', () => {
       class MyModule {
@@ -79,7 +79,7 @@ describe('Injector', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('Hello').should.equal('Tjo Tjingeling');
+      expect(injector.get('Hello')).toBe('Tjo Tjingeling');
     });
     it('should inject dependencies as provider to provides method', () => {
       class MyModule {
@@ -94,7 +94,7 @@ describe('Injector', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('Hello').should.equal('Tjo Tjingeling');
+      expect(injector.get('Hello')).toBe('Tjo Tjingeling');
     });
     it('should inject same instance for Singleton', () => {
       class MyModule {
@@ -110,7 +110,7 @@ describe('Injector', () => {
       const injector = new Injector(new MyModule());
       const c1 = injector.get('counter');
       const c2 = injector.get('counter');
-      c1.should.equal(c2);
+      expect(c1).toBe(c2);
     });
     it('should call configure on module', (done) => {
       class MyModule {
