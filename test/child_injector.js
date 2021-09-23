@@ -1,5 +1,4 @@
-import { Provides, Inject, Provider, Singleton, Injector } from '..';
-import should from 'should';
+import { Provides, Injector } from '..';
 
 describe('ChildInjector', () => {
   describe('Provides', () => {
@@ -24,8 +23,8 @@ describe('ChildInjector', () => {
       }
       const injector = new Injector(new MyModule('Hi Ho'));
       const childInjector = injector.createChildInjector(new MyChildModule('Hi 2'));
-      childInjector.get('AlohaChild').should.equal('Hi 2');
-      childInjector.get('Aloha').should.equal('Hi Ho');
+      expect(childInjector.get('AlohaChild')).toBe('Hi 2');
+      expect(childInjector.get('Aloha')).toBe('Hi Ho');
     });
   });
 });

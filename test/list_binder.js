@@ -1,5 +1,4 @@
 import { Provides, Inject, ListBinder, Singleton, Injector, ProvidesToList } from '..';
-import should from 'should';
 
 describe('ListBinder', () => {
   describe('ProvidesToList', () => {
@@ -22,7 +21,7 @@ describe('ListBinder', () => {
 
       const injector = new Injector(new MyModule(), new MySecondModule());
       injector.get('myList').then(res => {
-        res.length.should.equal(3);
+        expect(res).toHaveLength(3);
         done();
       });
     });
@@ -43,7 +42,7 @@ describe('ListBinder', () => {
 
       const injector = new Injector(new MyModule(), new MySecondModule());
       injector.get('myList').then(res => {
-        res.length.should.equal(2);
+        expect(res).toHaveLength(2);
         done();
       });
     });
@@ -61,7 +60,7 @@ describe('ListBinder', () => {
       const injector = new Injector(new MyModule());
       injector.get('myList');
       injector.get('myList').then(res => {
-        res[0].should.equal('Hello 0');
+        expect(res[0]).toBe('Hello 0');
         done();
       });
     });
@@ -89,7 +88,7 @@ describe('ListBinder', () => {
       const injector = new Injector(new MyModule());
       injector.get('myList');
       injector.get('myList').then(res => {
-        res[0].should.equal('Hello 0');
+        expect(res[0]).toBe('Hello 0');
         done();
       });
     });
@@ -117,9 +116,9 @@ describe('ListBinder', () => {
       }
       const injector = new Injector(new MyModule());
       injector.get('phrase').then(res => {
-        res.should.equal('Hello World !');
+        expect(res).toBe('Hello World !');
         done();
       });
-    });    
+    });
   });
 });

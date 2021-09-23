@@ -1,5 +1,4 @@
 import { Injector, ProvidesToMap } from '..';
-import should from 'should';
 
 describe('MapBinder', () => {
   describe('ProvidesToMap', () => {
@@ -21,7 +20,7 @@ describe('MapBinder', () => {
       }
       const injector = new Injector(new MyModule());
       injector.get('myMap').then(res => {
-        Object.keys(res).length.should.equal(3);
+        expect(Object.keys(res)).toHaveLength(3);
         done();
       });
     });
@@ -43,7 +42,7 @@ describe('MapBinder', () => {
       }
       const injector = new Injector(new MyModule());
       injector.get('myMap').then(res => {
-        Object.keys(res).length.should.equal(3);
+        expect(Object.keys(res)).toHaveLength(3);
         done();
       });
     });

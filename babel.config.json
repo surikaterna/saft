@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "@babel/env"
+  ],
+  "assumptions": {
+    "setPublicClassFields": true
+  },
+  "plugins": [
+    ["@babel/proposal-decorators", {
+      "legacy": true
+    }],
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread",
+    "@babel/transform-runtime"
+  ]
+}

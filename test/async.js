@@ -13,7 +13,7 @@ describe('InjectorAsync', () => {
       }
       const injector = new Injector(new MyModule());
       injector.get('Aloha').then(e => {
-        e.should.equal('Tjingeling');
+        expect(e).toBe('Tjingeling');
         done();
       });
     });
@@ -31,7 +31,7 @@ describe('InjectorAsync', () => {
       }
       const injector = new Injector(new MyModule());
       injector.get('Hawaii').then(e => {
-        e.should.equal('Hello Tjingeling');
+        expect(e).toBe('Hello Tjingeling');
         done();
       });
     });
