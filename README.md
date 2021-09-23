@@ -82,7 +82,11 @@ new Injector(new MyModule());
 
 ## Examples
 
-# TODO
-- [ ] Promise based DI
-- [ ] Deploy to NPM
-- [ ] Finialize documentation ;)
+# Upgrade Guide
+
+- [ ] Replace Mocha & Should with Jest
+- [ ] Upgrade ESLint and Babel dependencies
+- [ ] Replace bluebird with vanilla promises?
+- [ ] Add warning for missing reflect-metadata dependency
+- [ ] Add TypeScript support
+- [ ] Update documentation
