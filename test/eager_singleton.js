@@ -1,4 +1,5 @@
-import { Provides, Inject, Promises, EagerSingleton, Singleton, Injector } from '..';
+import { Provides, Inject, Provider, Promises, EagerSingleton, Singleton, Injector } from '..';
+import should from 'should';
 
 describe('EagerSingleton', () => {
   describe('Provides', () => {
@@ -31,10 +32,10 @@ describe('EagerSingleton', () => {
       const modules = [new MyModule(), new MyModule2()];
       const injector = new Injector(...modules);
 
-      expect(injector.get('counter').count).toBe(1);
+      injector.get('counter').count.should.equal(1);
       const c1 = injector.get('main');
       const c2 = injector.get('main');
-      expect(c1).toBe(c2);
+      c1.should.equal(c2);
     });
 
     it('should emit done when initiated', (done) => {
