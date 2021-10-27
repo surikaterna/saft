@@ -1,5 +1,6 @@
+import { Provider } from '../decorators/Provider';
 import { Key } from '../Key';
-import { Binding, Provider } from './Binding';
+import { Binding } from './Binding';
 import { ScopedBinder } from './ScopedBinder';
 
 export class LinkedBinder {

@@ -1,8 +1,6 @@
 import { InjectAnnotation, ProvidesAnnotation,
-   Annotations, PromisesAnnotation, SingletonAnnotation, EagerSingletonAnnotation, ProvidesToListAnnotation, ProvidesToMapAnnotation }
-from './annotations';
-import { Key } from './Key';
-
+  Annotations, PromisesAnnotation, SingletonAnnotation, EagerSingletonAnnotation, ProvidesToListAnnotation, ProvidesToMapAnnotation }
+  from '../annotations';
 
 const decoratorFactory = function decoratorFactory(AnnotationClass) {
   return (...params) => (target, key) => {
@@ -29,8 +27,4 @@ export const EagerSingleton = decoratorFactory(EagerSingletonAnnotation);
 export const ProvidesToList = decoratorFactory(ProvidesToListAnnotation);
 export const ProvidesToMap = decoratorFactory(ProvidesToMapAnnotation);
 
-export const Provider = keyToken => {
-  const key = Key.fromToken(keyToken);
-  key.setAsProvider(true);
-  return key;
-};
+export * from './Provider';

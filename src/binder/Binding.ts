@@ -1,9 +1,5 @@
+import { Provider } from '../decorators/Provider';
 import { Key } from '../Key';
-
-// TODO: Import from `decorators` when converted
-export interface Provider {
-  (keyToken: string): Key;
-}
 
 export interface Scope {
   scope(key: Key, provider: Provider): Provider;
