@@ -1,7 +1,7 @@
 import { InjectableAnnotation, InjectAnnotation, ProvidesAnnotation,
    Annotations, PromisesAnnotation, SingletonAnnotation, EagerSingletonAnnotation, ProvidesToListAnnotation, ProvidesToMapAnnotation }
 from './annotations';
-import { Key } from './key';
+import { Key } from './Key';
 
 
 const decoratorFactory = function decoratorFactory(AnnotationClass) {

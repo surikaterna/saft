@@ -1,4 +1,4 @@
-import { Key } from '../key';
+import { Key } from '../Key';
 import { ListBinder } from '../binder/list_binder';
 import { MapBinder } from '../binder/map_binder';
 
