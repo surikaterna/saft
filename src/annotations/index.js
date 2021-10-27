@@ -1,6 +1,7 @@
 import { Key } from '../Key';
 import { ListBinder } from '../binder/list_binder';
 import { MapBinder } from '../binder/map_binder';
+import { InjectAnnotation } from './InjectAnnotation';
 
 class Annotations {
   static setAnnotation(annotation, target, key) {
@@ -26,24 +27,6 @@ class Annotations {
     return res[0];
   }
 }
-
-class InjectAnnotation {
-  constructor(...keys) {
-    this._keys = keys.map(k => {
-      let r;
-      if (!(k instanceof Key)) {
-        r = Key.fromToken(k);
-      } else {
-        r = k;
-      }
-      return r;
-    });
-  }
-  getKeys() {
-    return this._keys;
-  }
-}
-InjectAnnotation._name = 'InjectAnnotation';
 
 class InjectableAnnotation {
   constructor() {
