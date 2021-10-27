@@ -84,8 +84,8 @@ new Injector(new MyModule());
 
 # Upgrade Guide
 
-- [ ] Replace Mocha & Should with Jest
-- [ ] Upgrade ESLint and Babel dependencies
+- [x] Replace Mocha & Should with Jest
+- [x] Upgrade ESLint and Babel dependencies
 - [ ] Replace bluebird with vanilla promises?
 - [ ] Add warning for missing reflect-metadata dependency
 - [ ] Add TypeScript support
