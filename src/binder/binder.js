@@ -3,7 +3,7 @@ import {
   Annotations, ProvidesAnnotation as Provides,
   InjectAnnotation as Inject, SingletonAnnotation as Singleton, BindingAnnotation
 } from '../annotations';
-import { Binding } from './binding';
+import { Binding } from './Binding';
 
 class ScopedBinder {
   constructor(binding) {
