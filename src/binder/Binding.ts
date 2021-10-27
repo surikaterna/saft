@@ -1,11 +1,11 @@
 import { Key } from '../Key';
 
 // TODO: Import from `decorators` when converted
-interface Provider {
+export interface Provider {
   (keyToken: string): Key;
 }
 
-interface Scope {
+export interface Scope {
   scope(key: Key, provider: Provider): Provider;
 }
 

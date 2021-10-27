@@ -4,31 +4,7 @@ import {
   InjectAnnotation as Inject, SingletonAnnotation as Singleton, BindingAnnotation
 } from '../annotations';
 import { Binding } from './Binding';
-
-class ScopedBinder {
-  constructor(binding) {
-    this._binding = binding;
-  }
-  in(scope) {
-    this._binding.setScope(scope);
-  }
-
-  // asEagerSingleton??
-}
-
-export class LinkedBinder {
-  constructor(binding) {
-    this._binding = binding;
-  }
-  toProvider(provider, keys, asPromise) {
-    this._binding.setProvider(provider);
-    if (keys) {
-      this._binding.setDependencies(keys);
-    }
-    this._binding.setAsPromise(asPromise);
-    return new ScopedBinder(this._binding);
-  }
-}
+import { LinkedBinder } from './LinkedBinder';
 
 export class Binder {
   constructor(modules = [], parent) {
