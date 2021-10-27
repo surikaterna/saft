@@ -88,6 +88,6 @@ new Injector(new MyModule());
 - [x] Upgrade ESLint and Babel dependencies
 - [x] ~~Replace bluebird with vanilla promises?~~
   - Since we're using Promise utilities from bluebird, we might keep it
-- [ ] Add warning for missing reflect-metadata dependency
+- [x] Add error for missing reflect-metadata dependency
 - [ ] Add TypeScript support
 - [ ] Update documentation

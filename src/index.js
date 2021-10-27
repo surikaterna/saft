@@ -1,3 +1,7 @@
+if (!Reflect || !Reflect.getMetadata) {
+  throw new Error('You need to import "reflect-metadata" at the very first line of your application.');
+}
+
 module.exports = {
   Provides: require('./decorators').Provides,
   Inject: require('./decorators').Inject,
@@ -8,5 +12,5 @@ module.exports = {
   Injector: require('./injector').Injector,
   ProvidesToList: require('./decorators').ProvidesToList,
   ProvidesToMap: require('./decorators').ProvidesToMap,
-  ListBinder: require('./binder/list_binder').ListBinder,
+  ListBinder: require('./binder/list_binder').ListBinder
 };
