@@ -1,32 +1,7 @@
-import { Key } from '../Key';
 import { ListBinder } from '../binder/list_binder';
 import { MapBinder } from '../binder/map_binder';
 import { InjectAnnotation } from './InjectAnnotation';
-
-class Annotations {
-  static setAnnotation(annotation, target, key) {
-    const annotations = Reflect.getMetadata('annotations', target, key) || [];
-    annotations.push(annotation);
-    return Reflect.defineMetadata('annotations', annotations, target, key);
-  }
-  static getAnnotations(AnnotationType, target, key) {
-    const annotations = Reflect.getMetadata('annotations', target, key) || [];
-    const result = annotations.filter(x => (x instanceof AnnotationType
-      || (Object.getPrototypeOf(x.constructor)._name && Object.getPrototypeOf(x.constructor)._name === AnnotationType._name)));
-    return result;
-  }
-  static hasAnnotation(AnnotationType, target, key) {
-    return Annotations.getAnnotations(AnnotationType, target, key).length !== 0;
-  }
-
-  static getAnnotation(AnnotationType, target, key) {
-    const res = Annotations.getAnnotations(AnnotationType, target, key);
-    if (res.length !== 1) {
-      throw new Error(`There is ${res.length} annotations available of type ${AnnotationType}`);
-    }
-    return res[0];
-  }
-}
+import { Annotations } from './Annotations';
 
 class BindingAnnotation {
   constructor(key, asPromise = false) {
