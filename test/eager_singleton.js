@@ -1,4 +1,4 @@
-import { Provides, Inject, Promises, EagerSingleton, Singleton, Injector } from '..';
+import { Provides, Inject, Promises, EagerSingleton, Singleton, Injector } from '../src';
 
 describe('EagerSingleton', () => {
   describe('Provides', () => {

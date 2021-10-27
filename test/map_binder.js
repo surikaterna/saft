@@ -1,4 +1,4 @@
-import { Injector, ProvidesToMap } from '..';
+import { Injector, ProvidesToMap } from '../src';
 
 describe('MapBinder', () => {
   describe('ProvidesToMap', () => {

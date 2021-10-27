@@ -1,4 +1,4 @@
-import { Provides, Inject, Provider, Singleton, Injector } from '..';
+import { Provides, Inject, Provider, Singleton, Injector } from '../src';
 
 describe('Injector', () => {
   describe('Provides', () => {

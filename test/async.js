@@ -1,5 +1,5 @@
-import { Provides, Inject, Promises, Injector } from '..';
 import * as Promise from 'bluebird';
+import { Provides, Inject, Promises, Injector } from '../src';
 
 // async goodness
 describe('InjectorAsync', () => {

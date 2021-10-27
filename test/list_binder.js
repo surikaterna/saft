@@ -1,4 +1,4 @@
-import { Provides, Inject, ListBinder, Singleton, Injector, ProvidesToList } from '..';
+import { Provides, Inject, ListBinder, Singleton, Injector, ProvidesToList } from '../src';
 
 describe('ListBinder', () => {
   describe('ProvidesToList', () => {

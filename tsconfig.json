@@ -1,0 +1,23 @@
+{
+  "include": ["src", "types"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "compilerOptions": {
+    "module": "ES2015",
+    "lib": ["esnext"],
+    "importHelpers": true,
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "experimentalDecorators": true
+  }
+}

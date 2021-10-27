@@ -1,4 +1,4 @@
-import { Provides, Injector } from '..';
+import { Provides, Injector } from '../src';
 
 describe('ChildInjector', () => {
   describe('Provides', () => {
