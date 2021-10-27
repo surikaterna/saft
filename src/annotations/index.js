@@ -28,13 +28,6 @@ class Annotations {
   }
 }
 
-class InjectableAnnotation {
-  constructor() {
-
-  }
-}
-InjectableAnnotation._name = 'InjectableAnnotation';
-
 class BindingAnnotation {
   constructor(key, asPromise = false) {
     this._key = key;
@@ -151,7 +144,7 @@ function MyAnnotation(options): Decorator {
 }
 */
 export {
-  InjectAnnotation, ProvidesAnnotation, InjectableAnnotation,
+  InjectAnnotation, ProvidesAnnotation,
   Annotations, PromisesAnnotation, SingletonAnnotation, BindingAnnotation, ProvidesToListAnnotation,
   ProvidesToMapAnnotation, EagerSingletonAnnotation
 };
