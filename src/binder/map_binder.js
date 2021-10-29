@@ -1,9 +1,9 @@
 import Promise from 'bluebird';
 
-import { Binder } from './binder';
 import { Resolver } from '../resolver';
 import { Key } from '../Key';
 import { _getMultibinder } from './list_binder';
+import { Binder } from '.';
 
 export class MapBinder extends Binder {
   static get(binder, key) {

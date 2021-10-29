@@ -1,4 +1,4 @@
-import { Binder } from './binder/binder';
+import { Binder } from './binder';
 import { Resolver } from './resolver';
 import { Key } from './Key';
 import { EagerSingletonAnnotation } from './annotations/index';

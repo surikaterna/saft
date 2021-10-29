@@ -1,8 +1,8 @@
 import Promise from 'bluebird';
 
-import { Binder } from './binder';
 import { Resolver } from '../resolver';
 import { Key } from '../Key';
+import { Binder } from '.';
 
 // pretty
 export function _getMultibinder(binder, key, Multibinder) {
