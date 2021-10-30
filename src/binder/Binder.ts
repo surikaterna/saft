@@ -1,5 +1,4 @@
 import { Annotations, BindingAnnotation } from '../annotations';
-import { Key } from '../Key';
 import Reflector from '../reflect';
 import { Binding } from './Binding';
 import { LinkedBinder } from './LinkedBinder';
@@ -8,7 +7,7 @@ import { LinkedBinder } from './LinkedBinder';
 type Module = any;
 
 export class Binder {
-  _bindings = new Map<Key, Binding>();
+  _bindings = new Map<string, Binding>();
   _modules: Array<Module> = [];
   _parent?: Binder;
 
@@ -18,7 +17,7 @@ export class Binder {
     modules.forEach(m => this.install(m));
   }
 
-  bindKey(key: Key): LinkedBinder {
+  bindKey(key: string): LinkedBinder {
     const binding = new Binding(key);
     this._bindings.set(key, binding);
 
@@ -33,7 +32,7 @@ export class Binder {
     this._parent = parent;
   }
 
-  getBinding(key: Key): Binding | undefined {
+  getBinding(key: string): Binding | undefined {
     let binding = this._bindings.get(key);
 
     if (!binding && this._parent) {

@@ -1,7 +1,8 @@
 import { Provider } from '../decorators/Provider';
-import { Key } from '../Key';
 import { Binding } from './Binding';
 import { ScopedBinder } from './ScopedBinder';
+
+type Nullable<T> = T | null;
 
 export class LinkedBinder {
   // TODO: Update so it does not need to be public
@@ -11,14 +12,17 @@ export class LinkedBinder {
     this._binding = binding;
   }
 
-  toProvider(provider: Provider, keys: Array<Key>, asPromise: boolean): ScopedBinder {
+  toProvider(provider: Provider, keys?: Nullable<Array<string>>, asPromise?: boolean): ScopedBinder {
     this._binding.setProvider(provider);
 
     if (keys) {
       this._binding.setDependencies(keys);
     }
 
-    this._binding.setAsPromise(asPromise);
+    if (asPromise !== undefined) {
+      this._binding.setAsPromise(asPromise);
+    }
+
     return new ScopedBinder(this._binding);
   }
 }

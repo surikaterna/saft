@@ -1,20 +1,19 @@
 import { Provider } from '../decorators/Provider';
-import { Key } from '../Key';
 
 export interface Scope {
-  scope(key: Key, provider: Provider): Provider;
+  scope(key: string, provider: Provider): Provider;
 }
 
 export class Binding {
   // TODO: Update so it does not need to be public
-  public _key: Key;
+  public _key: string;
   protected isPromise: boolean;
   protected provider?: Provider;
   protected scope?: Scope;
   protected resolved?: Provider;
-  protected dependencies?: Array<Key>;
+  protected dependencies?: Array<string>;
 
-  constructor(key: Key, asPromise = false) {
+  constructor(key: string, asPromise = false) {
     this._key = key;
     this.isPromise = asPromise;
   }
@@ -35,7 +34,7 @@ export class Binding {
     return this.isPromise;
   }
 
-  setDependencies(keys: Array<Key>): void {
+  setDependencies(keys: Array<string>): void {
     this.dependencies = keys;
   }
 
