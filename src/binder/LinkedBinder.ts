@@ -1,4 +1,4 @@
-import { Provider } from '../decorators/Provider';
+import { Provider } from '../provider';
 import { Binding } from './Binding';
 import { ScopedBinder } from './ScopedBinder';
 

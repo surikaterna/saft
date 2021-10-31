@@ -12,5 +12,5 @@ module.exports = {
   Injector: require('./injector').Injector,
   ProvidesToList: require('./decorators').ProvidesToList,
   ProvidesToMap: require('./decorators').ProvidesToMap,
-  ListBinder: require('./binder/list_binder').ListBinder
+  ListBinder: require('./binder/ListBinder').ListBinder
 };

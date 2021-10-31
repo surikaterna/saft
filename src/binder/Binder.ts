@@ -2,6 +2,7 @@ import { Annotations, BindingAnnotation } from '../annotations';
 import Reflector from '../reflect';
 import { Binding } from './Binding';
 import { LinkedBinder } from './LinkedBinder';
+import { MultiBinder } from './MultiBinder';
 
 // TODO: Find proper type
 type Module = any;
@@ -9,6 +10,7 @@ type Module = any;
 export class Binder {
   _bindings = new Map<string, Binding>();
   _modules: Array<Module> = [];
+  _multiBinders?: Record<string, MultiBinder>;
   _parent?: Binder;
 
   constructor(modules = [], parent?: Binder) {

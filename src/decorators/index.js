@@ -27,4 +27,5 @@ export const EagerSingleton = decoratorFactory(EagerSingletonAnnotation);
 export const ProvidesToList = decoratorFactory(ProvidesToListAnnotation);
 export const ProvidesToMap = decoratorFactory(ProvidesToMapAnnotation);
 
-export * from './Provider';
+// TODO: Remove export from decorators?
+export * from '../provider/Provider';

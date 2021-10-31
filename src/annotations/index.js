@@ -1,5 +1,5 @@
-import { ListBinder } from '../binder/list_binder';
-import { MapBinder } from '../binder/map_binder';
+import { ListBinder } from '../binder/ListBinder';
+import { MapBinder } from '../binder/MapBinder';
 import { InjectAnnotation } from './InjectAnnotation';
 import { Annotations } from './Annotations';
 

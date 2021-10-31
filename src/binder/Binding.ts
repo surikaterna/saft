@@ -1,4 +1,4 @@
-import { Provider } from '../decorators/Provider';
+import { Provider } from '../provider';
 
 export interface Scope {
   scope(key: string, provider: Provider): Provider;
@@ -46,7 +46,7 @@ export class Binding {
     return this.dependencies;
   }
 
-  setScope(scope: Scope): void {
+  setScope(scope?: Scope): void {
     this.scope = scope;
   }
 
