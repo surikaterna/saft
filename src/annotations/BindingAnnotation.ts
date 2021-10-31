@@ -1,13 +1,12 @@
 import { AnnotationKey, Target } from '../annotations/Annotations';
 import { Binder } from '../binder';
-import { Key } from '../Key';
 
 export class BindingAnnotation {
   public static _name = 'BindingAnnotation';
-  private readonly _key: Key;
-  private readonly _asPromise: boolean;
+  protected readonly _key: string;
+  protected readonly _asPromise: boolean;
 
-  constructor(key: Key, asPromise = false) {
+  constructor(key: string, asPromise = false) {
     this._key = key;
     this._asPromise = asPromise;
   }
