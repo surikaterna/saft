@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import { Provider } from '../provider';
+import { Key } from '../Key';
 import { Resolver } from '../resolver';
 import { Binder } from './Binder';
 
@@ -10,5 +10,5 @@ export abstract class MultiBinder extends Binder {
     super([], binder);
   }
 
-  abstract _get(): Promise<Array<string> | Record<string, Provider>>;
+  abstract _get(): Promise<Array<Key>> | Promise<Record<string, Key>>;
 }

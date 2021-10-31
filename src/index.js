@@ -5,7 +5,7 @@ if (!Reflect || !Reflect.getMetadata) {
 module.exports = {
   Provides: require('./decorators').Provides,
   Inject: require('./decorators').Inject,
-  Provider: require('./decorators').Provider,
+  Provider: require('./provider').Provider,
   Singleton: require('./decorators').Singleton,
   EagerSingleton: require('./decorators').EagerSingleton,
   Promises: require('./decorators').Promises,

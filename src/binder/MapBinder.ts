@@ -1,5 +1,4 @@
 import Promise from 'bluebird';
-import { Provider } from '../decorators';
 import { Key } from '../Key';
 import { Binder } from './Binder';
 import { getMultiBinder } from './getMultiBinder';
@@ -14,8 +13,8 @@ export class MapBinder extends MultiBinder {
     super(binder);
   }
 
-  _get(): Promise<Record<string, Provider>> {
-    const result: Record<string, Provider> = {};
+  _get(): Promise<Record<string, Key>> {
+    const result: Record<string, Promise<Key>> = {};
 
     this._bindings.forEach(binding => {
       const key = binding._key;

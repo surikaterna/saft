@@ -22,7 +22,7 @@ export class ListBinder extends MultiBinder {
     return super.bindKey(key);
   }
 
-  _get(): Promise<Array<string>> {
+  _get(): Promise<Array<Key>> {
     const allItems: Array<any> = [];
 
     const keys = Object.keys(this._list).map((e) => Number.parseInt(e, 10));
@@ -41,9 +41,5 @@ export class ListBinder extends MultiBinder {
     const list = this._list[sortOrder] || (this._list[sortOrder] = []);
     list.push(key);
     return key;
-  }
-
-  _getList(): BoundList {
-    return this._list;
   }
 }

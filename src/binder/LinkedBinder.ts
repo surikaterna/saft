@@ -1,3 +1,4 @@
+import { Key } from '../Key';
 import { Provider } from '../provider';
 import { Binding } from './Binding';
 import { ScopedBinder } from './ScopedBinder';
@@ -12,7 +13,7 @@ export class LinkedBinder {
     this._binding = binding;
   }
 
-  toProvider(provider: Provider, keys?: Nullable<Array<string>>, asPromise?: boolean): ScopedBinder {
+  toProvider(provider: Provider, keys?: Nullable<Array<Key>>, asPromise?: boolean): ScopedBinder {
     this._binding.setProvider(provider);
 
     if (keys) {

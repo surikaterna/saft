@@ -1,8 +1,6 @@
+import { Key } from '../Key';
 import { Provider } from '../provider';
-
-export interface Scope {
-  scope(key: string, provider: Provider): Provider;
-}
+import { Scope } from './ScopedBinder';
 
 export class Binding {
   // TODO: Update so it does not need to be public
@@ -11,7 +9,7 @@ export class Binding {
   protected provider?: Provider;
   protected scope?: Scope;
   protected resolved?: Provider;
-  protected dependencies?: Array<string>;
+  protected dependencies?: Array<Key>;
 
   constructor(key: string, asPromise = false) {
     this._key = key;
@@ -34,7 +32,7 @@ export class Binding {
     return this.isPromise;
   }
 
-  setDependencies(keys: Array<string>): void {
+  setDependencies(keys: Array<Key>): void {
     this.dependencies = keys;
   }
 
