@@ -16,7 +16,7 @@ export class Binder {
 
   constructor(modules: Array<Module> = [], parent?: Binder) {
     this._parent = parent;
-    modules.forEach(m => this.install(m));
+    modules.forEach((m) => this.install(m));
   }
 
   bindKey(key: string): LinkedBinder {
@@ -59,8 +59,8 @@ export class Binder {
   _scanForAnnotations(module: Module) {
     const binder = this;
     Reflector.ownKeys(Object.getPrototypeOf(module)).forEach((annotationKey) => {
-      if (Annotations.hasAnnotation((BindingAnnotation as AnnotationConstructor<BindingAnnotation>), module, annotationKey)) {
-        const bindings = Annotations.getAnnotations((BindingAnnotation as AnnotationConstructor<BindingAnnotation>), module, annotationKey);
+      if (Annotations.hasAnnotation(BindingAnnotation as AnnotationConstructor<BindingAnnotation>, module, annotationKey)) {
+        const bindings = Annotations.getAnnotations(BindingAnnotation as AnnotationConstructor<BindingAnnotation>, module, annotationKey);
         bindings.forEach((binding) => {
           binding.bind(binder, module, annotationKey);
         });

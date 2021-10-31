@@ -1,6 +1,13 @@
-import { InjectAnnotation, ProvidesAnnotation,
-  Annotations, PromisesAnnotation, SingletonAnnotation, EagerSingletonAnnotation, ProvidesToListAnnotation, ProvidesToMapAnnotation }
-  from '../annotations';
+import {
+  Annotations,
+  EagerSingletonAnnotation,
+  InjectAnnotation,
+  PromisesAnnotation,
+  ProvidesAnnotation,
+  ProvidesToListAnnotation,
+  ProvidesToMapAnnotation,
+  SingletonAnnotation
+} from '../annotations';
 
 const decoratorFactory = function decoratorFactory(AnnotationClass) {
   return (...params) => (target, key) => {

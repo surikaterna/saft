@@ -10,7 +10,7 @@ export class Injector extends EventEmitter2 {
   _modules: Array<Module>;
   _binder: Binder;
   _resolver: Resolver;
-  _parent?: Injector
+  _parent?: Injector;
 
   constructor(...modules: Array<Module>) {
     super();
