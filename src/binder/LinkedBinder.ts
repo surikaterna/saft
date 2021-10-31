@@ -1,9 +1,8 @@
 import { Key } from '../Key';
 import { Provider } from '../provider';
+import { Nullable } from '../types';
 import { Binding } from './Binding';
 import { ScopedBinder } from './ScopedBinder';
-
-type Nullable<T> = T | null;
 
 export class LinkedBinder {
   // TODO: Update so it does not need to be public

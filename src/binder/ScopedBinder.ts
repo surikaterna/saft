@@ -14,7 +14,7 @@ export class ScopedBinder {
     this._binding = binding;
   }
 
-  in(scope: Scope): void {
+  in(scope?: Scope): void {
     this._binding.setScope(scope);
   }
 }

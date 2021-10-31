@@ -1,3 +1,4 @@
+import { AnnotationKey, Target } from '../annotations/Annotations';
 import { Binder } from '../binder';
 import { Key } from '../Key';
 
@@ -19,7 +20,7 @@ export class BindingAnnotation {
     return this._asPromise;
   }
 
-  bind(_target: any, _targetKey: string, _binder: Binder) {
+  bind(_binder: Binder, _target: Target, _targetKey: AnnotationKey) {
     throw new Error('Binding needs to override bind()');
   }
 }
