@@ -1,25 +1,8 @@
 import { ListBinder } from '../binder/ListBinder';
 import { MapBinder } from '../binder/MapBinder';
-import { InjectAnnotation } from './InjectAnnotation';
 import { Annotations } from './Annotations';
-
-class BindingAnnotation {
-  constructor(key, asPromise = false) {
-    this._key = key;
-    this._asPromise = asPromise;
-  }
-  get key() {
-    return this._key;
-  }
-
-  get asPromise() {
-    return this._asPromise;
-  }
-  bind(target, targetKey, binder) {
-    throw new Error('Binding needs to override bind()');
-  }
-}
-BindingAnnotation._name = 'BindingAnnotation';
+import { InjectAnnotation } from './InjectAnnotation';
+import { BindingAnnotation } from './BindingAnnotation';
 
 class SingletonAnnotation {
   scope(key, unscopedProvider) {

@@ -3,6 +3,7 @@
   "exclude": ["node_modules", "**/*.spec.ts"],
   "compilerOptions": {
     "module": "ES2015",
+    "target": "ES5",
     "lib": ["esnext"],
     "importHelpers": true,
     "declaration": true,
