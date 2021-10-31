@@ -1,28 +1,10 @@
 import { ListBinder } from '../binder/ListBinder';
 import { MapBinder } from '../binder/MapBinder';
 import { Annotations } from './Annotations';
-import { InjectAnnotation } from './InjectAnnotation';
 import { BindingAnnotation } from './BindingAnnotation';
-
-class SingletonAnnotation {
-  scope(key, unscopedProvider) {
-    const instances = {};
-    return () => {
-      const rawKey = key.getRawKey();
-      let instance = instances[rawKey];
-      if (instances[rawKey] === undefined) {
-        instance = instances[rawKey] = unscopedProvider();
-      }
-      return instance;
-    };
-  }
-}
-SingletonAnnotation._name = 'SingletonAnnotation';
-
-class EagerSingletonAnnotation extends SingletonAnnotation {
-}
-EagerSingletonAnnotation._name = 'EagerSingletonAnnotation';
-
+import { EagerSingletonAnnotation } from './EagerSingletonAnnotation';
+import { InjectAnnotation } from './InjectAnnotation';
+import { SingletonAnnotation } from './SingletonAnnotation';
 
 class ProvidesAnnotation extends BindingAnnotation {
   bind(binder, target, targetKey) {
