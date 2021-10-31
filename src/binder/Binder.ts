@@ -1,4 +1,5 @@
 import { Annotations, BindingAnnotation } from '../annotations';
+import { AnnotationConstructor } from '../annotations/Annotation';
 import Reflector from '../reflect';
 import { Binding } from './Binding';
 import { LinkedBinder } from './LinkedBinder';
@@ -59,9 +60,9 @@ export class Binder {
   _scanForAnnotations(module: Module) {
     const binder = this;
     Reflector.ownKeys(Object.getPrototypeOf(module)).forEach((annotationKey) => {
-      if (Annotations.hasAnnotation(BindingAnnotation, module, annotationKey)) {
-        const bindings = Annotations.getAnnotations(BindingAnnotation, module, annotationKey);
-        bindings.forEach(binding => {
+      if (Annotations.hasAnnotation((BindingAnnotation as AnnotationConstructor<BindingAnnotation>), module, annotationKey)) {
+        const bindings = Annotations.getAnnotations((BindingAnnotation as AnnotationConstructor<BindingAnnotation>), module, annotationKey);
+        bindings.forEach((binding) => {
           binding.bind(binder, module, annotationKey);
         });
       }
