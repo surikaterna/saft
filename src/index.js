@@ -9,7 +9,7 @@ module.exports = {
   Singleton: require('./decorators').Singleton,
   EagerSingleton: require('./decorators').EagerSingleton,
   Promises: require('./decorators').Promises,
-  Injector: require('./injector').Injector,
+  Injector: require('./Injector').Injector,
   ProvidesToList: require('./decorators').ProvidesToList,
   ProvidesToMap: require('./decorators').ProvidesToMap,
   ListBinder: require('./binder/ListBinder').ListBinder

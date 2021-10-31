@@ -1,66 +1,62 @@
-import { Binder } from './binder';
-import { Resolver } from './resolver';
-import { Key } from './Key';
-import { EagerSingletonAnnotation } from './annotations/index';
-import { EventEmitter2 } from 'eventemitter2';
 import Promise from 'bluebird';
-
+import { EventEmitter2 } from 'eventemitter2';
+import { EagerSingletonAnnotation } from './annotations';
+import { Binder, Module } from './binder';
+import { Key } from './Key';
+import { Provider } from './provider';
+import { Resolver } from './resolver';
 
 export class Injector extends EventEmitter2 {
-  constructor(...modules) {
+  _modules: Array<Module>;
+  _binder: Binder;
+  _resolver: Resolver;
+  _parent?: Injector
+
+  constructor(...modules: Array<Module>) {
     super();
+
     this._modules = modules;
     this._binder = new Binder(modules);
     this._resolver = new Resolver(this._binder);
-    // create binder
-    // send modules to binder
-    // resolve
-    const promises = [];
+
+    const promises: Array<Promise<Key>> = [];
+
     this._binder._bindings.forEach((binding) => {
       if (binding.getScope() instanceof EagerSingletonAnnotation) {
         promises.push(this.get(binding._key));
       }
     });
+
     Promise.all(promises).then(() => {
       this.emit('ready');
     });
-    this._isSync = false;
   }
 
-  setSyncWhenPossible(shouldBeSync) {
-
-  }
-
-  createChildInjector(...modules) {
+  createChildInjector(...modules: Array<Module>) {
     const childInjector = new Injector(...modules);
     childInjector._parent = this;
     childInjector._binder.setParent(this._binder);
     return childInjector;
   }
-	/*
-		TODO: right now only support constructor injection, maybe later to enable easier testing
-		injectMembers(instance) {
-	}
-	*/
 
   /**
    * A Provider is a function that creates instances for a particular key/class
    * @param key - key to retrieve a provider for should be instance of @see Key
    */
-  getProvider(key) {
-    const k = (key instanceof Key) ? key : Key.fromToken(key);
+  getProvider(key: Key | string): Provider {
+    const k = key instanceof Key ? key : Key.fromToken(key);
     return this._resolver.getProvider(k);
   }
 
   /**
    * Retrieve an instance for a key, same as getProvider(key)();
    */
-  get(key) {
+  get(key: Key | string): Promise<Key> {
     return this.getProvider(key)();
   }
 
   /**
-   * Retrieves parent injector if one exists, otherwise null
+   * Retrieves parent injector if one exists, otherwise undefined
    */
   getParent() {
     return this._parent;

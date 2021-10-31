@@ -6,7 +6,7 @@ import { LinkedBinder } from './LinkedBinder';
 import { MultiBinder } from './MultiBinder';
 
 // TODO: Find proper type
-type Module = any;
+export type Module = any;
 
 export class Binder {
   _bindings = new Map<string, Binding>();
@@ -14,8 +14,7 @@ export class Binder {
   _multiBinders?: Record<string, MultiBinder>;
   _parent?: Binder;
 
-  constructor(modules = [], parent?: Binder) {
-
+  constructor(modules: Array<Module> = [], parent?: Binder) {
     this._parent = parent;
     modules.forEach(m => this.install(m));
   }
