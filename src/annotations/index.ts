@@ -1,4 +1,3 @@
-export * from './Annotation';
 export * from './Annotations';
 export * from './BindingAnnotation';
 export * from './EagerSingletonAnnotation';

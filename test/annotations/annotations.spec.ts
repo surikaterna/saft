@@ -1,13 +1,17 @@
 import { Annotations } from '../../src/annotations';
 
-class Annot {
-  constructor(val) {
+class Annot<Type = unknown> {
+  readonly _val: Type;
+
+  constructor(val: Type) {
     this._val = val;
   }
 }
 
-class Annot2 {
-  constructor(val) {
+class Annot2<Type = unknown> {
+  readonly _val: Type;
+
+  constructor(val: Type) {
     this._val = val;
   }
 }

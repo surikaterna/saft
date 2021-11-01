@@ -1,7 +1,6 @@
 import { Binder } from '../binder';
 import { Key } from '../Key';
 import { Nullable } from '../types';
-import { AnnotationConstructor } from './Annotation';
 import { AnnotationKey, Annotations, Target } from './Annotations';
 import { BindingAnnotation } from './BindingAnnotation';
 import { InjectAnnotation } from './InjectAnnotation';
@@ -25,9 +24,8 @@ export class ProvidesAnnotation extends BindingAnnotation {
       throw new Error(`Cannot bind. No function found for ${String(targetKey)} on ${target}`);
     }
 
-    // TODO: How to avoid needing to type cast like this?
-    const scope = Annotations.hasAnnotation(SingletonAnnotation as AnnotationConstructor<SingletonAnnotation>, target, targetKey)
-      ? Annotations.getAnnotation<SingletonAnnotation>(SingletonAnnotation as AnnotationConstructor<SingletonAnnotation>, target, targetKey)
+    const scope = Annotations.hasAnnotation(SingletonAnnotation, target, targetKey)
+      ? Annotations.getAnnotation(SingletonAnnotation, target, targetKey)
       : undefined;
 
     const fnLength = fn.length;
@@ -36,11 +34,11 @@ export class ProvidesAnnotation extends BindingAnnotation {
       return this.bindToScope({ binder, fn, scope, target, keys: null });
     }
 
-    if (!Annotations.hasAnnotation(InjectAnnotation as AnnotationConstructor<InjectAnnotation>, target, targetKey)) {
+    if (!Annotations.hasAnnotation(InjectAnnotation, target, targetKey)) {
       throw new Error(`@Provides function has unsatisfied parameters, @Inject is missing for key ${String(targetKey)} in target ${target}`);
     }
 
-    const inject = Annotations.getAnnotation(InjectAnnotation as AnnotationConstructor<InjectAnnotation>, target, targetKey);
+    const inject = Annotations.getAnnotation(InjectAnnotation, target, targetKey);
     const keysLength = inject.getKeys().length;
 
     if (keysLength !== fnLength) {

@@ -1,8 +1,5 @@
 import { AnnotationKey, Annotations, Target } from '../annotations';
-
-interface Constructable {
-  new (...args: any): any;
-}
+import { Constructable } from '../types';
 
 export function decoratorFactory<Type extends Constructable>(AnnotationType: Type) {
   return (...params: ConstructorParameters<Type>) =>
