@@ -4,7 +4,9 @@ describe('ChildInjector', () => {
   describe('Provides', () => {
     it('should return parent bindings if not found in child', () => {
       class MyModule {
-        constructor(message) {
+        private readonly _message: string;
+
+        constructor(message: string) {
           this._message = message;
         }
         @Provides('Aloha')
@@ -13,7 +15,9 @@ describe('ChildInjector', () => {
         }
       }
       class MyChildModule {
-        constructor(message) {
+        private readonly _message: string;
+
+        constructor(message: string) {
           this._message = message;
         }
         @Provides('AlohaChild')
