@@ -1,8 +1,7 @@
-import Promise from 'bluebird';
 import { Key } from '../Key';
 
-export interface Provider {
-  (...params: any[]): Promise<Key>;
+export interface Provider<ReturnValue extends any = any> {
+  (...params: any[]): ReturnValue;
 }
 
 export function Provider(keyToken: string): Key {

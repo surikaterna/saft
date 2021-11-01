@@ -12,7 +12,7 @@ export class LinkedBinder {
     this._binding = binding;
   }
 
-  toProvider(provider: Provider, keys?: Nullable<Array<Key>>, asPromise?: boolean): ScopedBinder {
+  toProvider<Value>(provider: Provider<Value>, keys?: Nullable<Array<Key>>, asPromise?: boolean): ScopedBinder {
     this._binding.setProvider(provider);
 
     if (keys) {

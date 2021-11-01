@@ -9,15 +9,15 @@ type BoundList = Record<number, Array<string>>;
 export class ListBinder extends MultiBinder {
   _list: BoundList = {};
 
-  static get(binder: Binder, key: string) {
-    return getMultiBinder(binder, key, ListBinder);
+  static get(binder: Binder, key: string): ListBinder {
+    return getMultiBinder(binder, key, ListBinder) as ListBinder;
   }
 
   constructor(binder: Binder) {
     super(binder);
   }
 
-  bindToList(sortOrder: number) {
+  bindToList(sortOrder?: number) {
     const key = this._getKey(sortOrder);
     return super.bindKey(key);
   }

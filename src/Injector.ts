@@ -19,7 +19,7 @@ export class Injector extends EventEmitter2 {
     this._binder = new Binder(modules);
     this._resolver = new Resolver(this._binder);
 
-    const promises: Array<Promise<Key>> = [];
+    const promises: Array<Promise<Array<Key>>> = [];
 
     this._binder._bindings.forEach((binding) => {
       if (binding.getScope() instanceof EagerSingletonAnnotation) {
@@ -51,7 +51,7 @@ export class Injector extends EventEmitter2 {
   /**
    * Retrieve an instance for a key, same as getProvider(key)();
    */
-  get(key: Key | string): Promise<Key> {
+  get(key: Key | string): Promise<Array<Key>> {
     return this.getProvider(key)();
   }
 

@@ -5,8 +5,8 @@ import { getMultiBinder } from './getMultiBinder';
 import { MultiBinder } from './MultiBinder';
 
 export class MapBinder extends MultiBinder {
-  static get(binder: Binder, key: string) {
-    return getMultiBinder(binder, key, MapBinder);
+  static get(binder: Binder, key: string): MapBinder {
+    return getMultiBinder(binder, key, MapBinder) as MapBinder;
   }
 
   constructor(binder: Binder) {

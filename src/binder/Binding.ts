@@ -16,7 +16,7 @@ export class Binding {
     this.isPromise = asPromise;
   }
 
-  setProvider(provider: Provider): void {
+  setProvider<Value>(provider: Provider<Value>): void {
     this.provider = provider;
   }
 
