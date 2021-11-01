@@ -90,8 +90,8 @@ new Injector(new MyModule());
   - Since we're using Promise utilities from bluebird, we might keep it
 - [x] Add error for missing reflect-metadata dependency
 - [x] Add TypeScript support
-- [ ] Convert fully to TypeScript
+- [x] Convert fully to TypeScript
   - [x] Convert JS files to TS
-  - [ ] Replace Babel with tsc completely?
-  - [ ] Remove `"allowJs": true` when converted to TS
+  - [x] Replace Babel with tsc completely?
+  - [x] Remove `"allowJs": true` when converted to TS
 - [ ] Update documentation

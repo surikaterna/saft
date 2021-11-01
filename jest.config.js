@@ -1,6 +1,6 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  preset: 'ts-jest/presets/js-with-babel',
+  preset: 'ts-jest',
   testEnvironment: 'node',
   clearMocks: true,
   coverageDirectory: "coverage",
@@ -12,6 +12,6 @@ module.exports = {
   ],
   testTimeout: 2000,
   setupFilesAfterEnv: [
-    '<rootDir>/jest.setup.js'
+    '<rootDir>/jest.setup.ts'
   ]
 };
