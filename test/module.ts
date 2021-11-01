@@ -30,7 +30,9 @@ describe('Injector', () => {
     });
     it('should call provides method with correct this', () => {
       class MyModule {
-        constructor(message) {
+        private readonly _message: string;
+
+        constructor(message: string) {
           this._message = message;
         }
         @Provides('Aloha')
@@ -44,7 +46,7 @@ describe('Injector', () => {
     it('should throw when Provides function needs arguments but no Inject', () => {
       class MyModule {
         @Provides('Hello')
-        getHelloWorld(aloha) {
+        getHelloWorld(aloha: string) {
           return `Tjo ${aloha}`;
         }
       }
@@ -57,7 +59,7 @@ describe('Injector', () => {
       class MyModule {
         @Provides('Hello')
         @Inject('test')
-        getHelloWorld(aloha) {
+        getHelloWorld(aloha: string) {
           return `Tjo ${aloha}`;
         }
       }
@@ -74,7 +76,7 @@ describe('Injector', () => {
         }
         @Provides('Hello')
         @Inject('Aloha')
-        getHelloWorld(aloha) {
+        getHelloWorld(aloha: string) {
           return `Tjo ${aloha}`;
         }
       }
@@ -89,7 +91,7 @@ describe('Injector', () => {
         }
         @Provides('Hello')
         @Inject(Provider('Aloha'))
-        getHelloWorld(aloha) {
+        getHelloWorld(aloha: () => string) {
           return `Tjo ${aloha()}`;
         }
       }
@@ -98,6 +100,8 @@ describe('Injector', () => {
     });
     it('should inject same instance for Singleton', () => {
       class MyModule {
+        private _id: number;
+
         constructor() {
           this._id = 11;
         }
