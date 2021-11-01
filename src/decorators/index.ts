@@ -1,5 +1,4 @@
 import {
-  AnnotationConstructor,
   EagerSingletonAnnotation,
   InjectAnnotation,
   PromisesAnnotation,
@@ -10,11 +9,11 @@ import {
 } from '../annotations';
 import { decoratorFactory } from './decoratorFactory';
 
-export const EagerSingleton = decoratorFactory(EagerSingletonAnnotation as AnnotationConstructor<EagerSingletonAnnotation>);
-export const Inject = decoratorFactory(InjectAnnotation as AnnotationConstructor<InjectAnnotation>);
-export const Promises = decoratorFactory(PromisesAnnotation as AnnotationConstructor<PromisesAnnotation>);
-export const Provides = decoratorFactory(ProvidesAnnotation as AnnotationConstructor<ProvidesAnnotation>);
-export const ProvidesToList = decoratorFactory(ProvidesToListAnnotation as AnnotationConstructor<ProvidesToListAnnotation>);
-export const ProvidesToMap = decoratorFactory(ProvidesToMapAnnotation as AnnotationConstructor<ProvidesToMapAnnotation>);
-export const Singleton = decoratorFactory(SingletonAnnotation as AnnotationConstructor<SingletonAnnotation>);
+export const EagerSingleton = decoratorFactory(EagerSingletonAnnotation);
+export const Inject = decoratorFactory(InjectAnnotation);
+export const Promises = decoratorFactory(PromisesAnnotation);
+export const Provides = decoratorFactory(ProvidesAnnotation);
+export const ProvidesToList = decoratorFactory(ProvidesToListAnnotation);
+export const ProvidesToMap = decoratorFactory(ProvidesToMapAnnotation);
+export const Singleton = decoratorFactory(SingletonAnnotation);
 export { decoratorFactory };

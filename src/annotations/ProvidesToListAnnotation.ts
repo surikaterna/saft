@@ -6,9 +6,9 @@ import { Binder, ListBinder } from '../binder';
 export class ProvidesToListAnnotation extends BindingAnnotation {
   static _name = 'ProvidesToListAnnotation';
 
-  private readonly _sortOrder: number;
+  private readonly _sortOrder?: number;
 
-  constructor(key: string, sortOrder: number, asPromise?: boolean) {
+  constructor(key: string, sortOrder?: number, asPromise?: boolean) {
     super(key, asPromise);
     this._sortOrder = sortOrder;
   }

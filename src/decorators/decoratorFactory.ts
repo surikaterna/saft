@@ -1,11 +1,14 @@
 import { AnnotationKey, Annotations, Target } from '../annotations';
-import { AnnotationConstructor } from '../annotations/Annotation';
 
-export function decoratorFactory<Type>(AnnotationType: AnnotationConstructor<Type>) {
-  return (...params: Array<any>) =>
+interface Constructable {
+  new (...args: any): any;
+}
+
+export function decoratorFactory<Type extends Constructable>(AnnotationType: Type) {
+  return (...params: ConstructorParameters<Type>) =>
     (target: Target, key: AnnotationKey) => {
-      const annotation: Type = Object.create(AnnotationType.prototype);
-      AnnotationType.apply<Type, Array<any>>(annotation, params);
+      const annotation = Object.create(AnnotationType.prototype);
+      AnnotationType.apply(annotation, params);
       Annotations.setAnnotation(annotation, target, key);
     };
-};
+}
