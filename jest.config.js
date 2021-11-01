@@ -1,4 +1,7 @@
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
+  preset: 'ts-jest/presets/js-with-babel',
+  testEnvironment: 'node',
   clearMocks: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
@@ -8,9 +11,6 @@ module.exports = {
     "**/?(*.)+(spec|test).[jt]s?(x)"
   ],
   testTimeout: 2000,
-  transform: {
-    "^.+\\.[t|j]s$": "babel-jest"
-  },
   setupFilesAfterEnv: [
     '<rootDir>/jest.setup.js'
   ]
