@@ -20,7 +20,7 @@ describe('ListBinder', () => {
       }
 
       const injector = new Injector(new MyModule(), new MySecondModule());
-      injector.get('myList').then((res) => {
+      injector.get<Promise<string>>('myList').then((res) => {
         expect(res).toHaveLength(3);
         done();
       });
@@ -48,7 +48,7 @@ describe('ListBinder', () => {
       }
 
       const injector = new Injector(new MyModule(), new MySecondModule(), new MyThirdModule());
-      injector.get('myList').then((res) => {
+      injector.get<Promise<string>>('myList').then((res) => {
         expect(res).toHaveLength(3);
         done();
       });
@@ -70,7 +70,7 @@ describe('ListBinder', () => {
 
       const injector = new Injector(new MyModule());
       injector.get('myList');
-      injector.get('myList').then((res) => {
+      injector.get<Promise<string>>('myList').then((res) => {
         expect(res[0]).toBe('Hello 0');
         done();
       });
@@ -100,7 +100,7 @@ describe('ListBinder', () => {
 
       const injector = new Injector(new MyModule());
       injector.get('myList');
-      injector.get('myList').then((res) => {
+      injector.get<Promise<string>>('myList').then((res) => {
         expect(res[0]).toBe('Hello 0');
         done();
       });
@@ -130,7 +130,7 @@ describe('ListBinder', () => {
       }
 
       const injector = new Injector(new MyModule());
-      injector.get('phrase').then((res) => {
+      injector.get<Promise<string>>('phrase').then((res) => {
         expect(res).toBe('Hello World !');
         done();
       });

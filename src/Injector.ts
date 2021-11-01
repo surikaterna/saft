@@ -43,7 +43,7 @@ export class Injector extends EventEmitter2 {
    * A Provider is a function that creates instances for a particular key/class
    * @param key - key to retrieve a provider for should be instance of @see Key
    */
-  getProvider(key: Key | string): Provider {
+  getProvider<Type>(key: Key | string): Provider<Type> {
     const k = key instanceof Key ? key : Key.fromToken(key);
     return this._resolver.getProvider(k);
   }
@@ -51,8 +51,8 @@ export class Injector extends EventEmitter2 {
   /**
    * Retrieve an instance for a key, same as getProvider(key)();
    */
-  get(key: Key | string): Promise<Array<Key>> {
-    return this.getProvider(key)();
+  get<Type = any>(key: Key | string): Type {
+    return this.getProvider<Type>(key)();
   }
 
   /**

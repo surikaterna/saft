@@ -19,7 +19,7 @@ describe('MapBinder', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('myMap').then(res => {
+      injector.get<Promise<Record<string, string>>>('myMap').then(res => {
         expect(Object.keys(res)).toHaveLength(3);
         done();
       });
@@ -41,7 +41,7 @@ describe('MapBinder', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('myMap').then(res => {
+      injector.get<Promise<Record<string, string>>>('myMap').then(res => {
         expect(Object.keys(res)).toHaveLength(3);
         done();
       });

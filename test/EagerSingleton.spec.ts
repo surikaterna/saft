@@ -1,5 +1,9 @@
 import { Provides, Inject, Promises, EagerSingleton, Singleton, Injector } from '../src';
 
+interface Counter {
+  count: number;
+}
+
 describe('EagerSingleton', () => {
   describe('Provides', () => {
     it('should create instance when bound', () => {
@@ -8,7 +12,7 @@ describe('EagerSingleton', () => {
         }
         @Provides('counter')
         @Singleton()
-        getCounter() {
+        getCounter(): Counter {
           return {
             count: 0
           };
@@ -22,7 +26,7 @@ describe('EagerSingleton', () => {
         @Provides('main')
         @EagerSingleton()
         @Inject('counter')
-        getCount(counter) {
+        getCount(counter: Counter) {
           counter.count++;
           return counter;
         }
@@ -31,7 +35,7 @@ describe('EagerSingleton', () => {
       const modules = [new MyModule(), new MyModule2()];
       const injector = new Injector(...modules);
 
-      expect(injector.get('counter').count).toBe(1);
+      expect(injector.get<Counter>('counter').count).toBe(1);
       const c1 = injector.get('main');
       const c2 = injector.get('main');
       expect(c1).toBe(c2);
