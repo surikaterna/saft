@@ -1,4 +1,4 @@
-import * as Promise from 'bluebird';
+import Promise from 'bluebird';
 import { Provides, Inject, Promises, Injector } from '../src';
 
 // async goodness
@@ -12,7 +12,7 @@ describe('InjectorAsync', () => {
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('Aloha').then(e => {
+      injector.get<Promise<string>>('Aloha').then(e => {
         expect(e).toBe('Tjingeling');
         done();
       });
@@ -25,12 +25,12 @@ describe('InjectorAsync', () => {
         }
         @Inject('Aloha')
         @Provides('Hawaii')
-        getHawaii(aloha) {
+        getHawaii(aloha: string) {
           return `Hello ${aloha}`;
         }
       }
       const injector = new Injector(new MyModule());
-      injector.get('Hawaii').then(e => {
+      injector.get<Promise<string>>('Hawaii').then(e => {
         expect(e).toBe('Hello Tjingeling');
         done();
       });
