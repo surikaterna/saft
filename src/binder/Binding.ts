@@ -3,8 +3,7 @@ import { Provider } from '../provider';
 import { Scope } from './ScopedBinder';
 
 export class Binding {
-  // TODO: Update so it does not need to be public
-  public _key: string;
+  protected key: string;
   protected isPromise: boolean;
   protected provider?: Provider;
   protected scope?: Scope;
@@ -12,8 +11,12 @@ export class Binding {
   protected dependencies?: Array<Key>;
 
   constructor(key: string, asPromise = false) {
-    this._key = key;
+    this.key = key;
     this.isPromise = asPromise;
+  }
+
+  getKey(): string {
+    return this.key;
   }
 
   setProvider<Value>(provider: Provider<Value>): void {

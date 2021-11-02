@@ -17,7 +17,7 @@ export class MapBinder extends MultiBinder {
     const result: Record<string, Promise<Key>> = {};
 
     this._bindings.forEach(binding => {
-      const key = binding._key;
+      const key = binding.getKey();
       result[key] = this._resolver.getProvider(Key.fromToken(key))();
     });
 

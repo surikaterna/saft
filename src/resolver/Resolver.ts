@@ -83,7 +83,7 @@ export class Resolver {
     const provider = binding.getProvider();
 
     if (!provider) {
-      const key = Key.fromToken(binding._key);
+      const key = Key.fromToken(binding.getKey());
       throw new Error(`Unable to get Provider for binding of ${key}`);
     }
 

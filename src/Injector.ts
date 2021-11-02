@@ -23,7 +23,7 @@ export class Injector extends EventEmitter2 {
 
     this._binder._bindings.forEach((binding) => {
       if (binding.getScope() instanceof EagerSingletonAnnotation) {
-        promises.push(this.get(binding._key));
+        promises.push(this.get(binding.getKey()));
       }
     });
 
