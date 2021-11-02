@@ -4,8 +4,9 @@ import { Binding } from './Binding';
 import { LinkedBinder } from './LinkedBinder';
 import { MultiBinder } from './MultiBinder';
 
-// TODO: Find proper type
-export type Module = any;
+export interface Module extends Object {
+  configure?(binder: Binder): void;
+}
 
 export class Binder {
   _bindings = new Map<string, Binding>();
