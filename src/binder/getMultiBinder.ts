@@ -13,8 +13,7 @@ export function getMultiBinder(binder: Binder, key: string, MultiBinderConstruct
   if (!multiBinder) {
     binder._multiBinders[key] = multiBinder = new MultiBinderConstructor(binder);
 
-    // TODO: Proper typing for Provider
-    const provider = () => (multiBinder._get() as any);
+    const provider = () => multiBinder._get();
     binder.bindKey(key).toProvider(provider, null, true);
   }
 
