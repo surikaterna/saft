@@ -7,14 +7,13 @@ export interface Scope {
 }
 
 export class ScopedBinder {
-  // TODO: Update so it does not need to be public
-  public _binding: Binding;
+  private binding: Binding;
 
   constructor(binding: Binding) {
-    this._binding = binding;
+    this.binding = binding;
   }
 
   in(scope?: Scope): void {
-    this._binding.setScope(scope);
+    this.binding.setScope(scope);
   }
 }
