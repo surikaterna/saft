@@ -1,7 +1,6 @@
-import { MultiBinder } from './MultiBinder';
 import { Binder } from '.';
-
-type Constructor<T extends {} = {}> = new (...args: any[]) => T;
+import { Constructor } from '../types';
+import { MultiBinder } from './MultiBinder';
 
 export function getMultiBinder(binder: Binder, key: string, MultiBinderConstructor: Constructor<MultiBinder>) {
   if (!binder._multiBinders) {
