@@ -2,7 +2,7 @@
   "include": ["src", "types"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "compilerOptions": {
-    "module": "ES2015",
+    "module": "CommonJS",
     "target": "ES5",
     "lib": ["esnext"],
     "importHelpers": true,
