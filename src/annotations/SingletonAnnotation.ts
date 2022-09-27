@@ -1,20 +1,24 @@
-import Promise from 'bluebird';
 import { Scope } from '../binder';
 import { Key } from '../Key';
 import { Provider } from '../provider';
 
 export class SingletonAnnotation implements Scope {
   public static _name = 'SingletonAnnotation';
+  public instances: Record<string, Promise<Key> | Key> = {};
 
   scope(key: Key, unscopedProvider: Provider): Provider {
-    const instances: Record<string, Promise<Key>> = {};
+    // const instances: Record<string, Promise<Key> | Key> = {};
     return () => {
       const rawKey = key.getRawKey();
-      let instance = instances[rawKey];
-      if (instances[rawKey] === undefined) {
-        instance = instances[rawKey] = unscopedProvider();
+      let instance = this.instances[rawKey];
+      if (this.instances[rawKey] === undefined) {
+        instance = this.instances[rawKey] = unscopedProvider();
       }
       return instance;
     };
+  }
+
+  addInstance(key: string, instance: Key): void {
+    this.instances[key] = instance;
   }
 }

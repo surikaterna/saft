@@ -1,10 +1,17 @@
-import Promise from 'bluebird';
 import { EventEmitter2 } from 'eventemitter2';
-import { EagerSingletonAnnotation } from './annotations';
+import { SingletonAnnotation } from './annotations';
 import { Binder, Module } from './binder';
 import { Key } from './Key';
 import { Provider } from './provider';
 import { Resolver } from './resolver';
+
+function isPromise(p: any) {
+  if (p !== null && typeof p === 'object' && typeof p.then === 'function' && typeof p.catch === 'function') {
+    return true;
+  }
+
+  return false;
+}
 
 export class Injector extends EventEmitter2 {
   _modules: Array<Module>;
@@ -20,10 +27,17 @@ export class Injector extends EventEmitter2 {
     this._resolver = new Resolver(this._binder);
 
     const promises: Array<Promise<Array<Key>>> = [];
-
     this._binder._bindings.forEach((binding) => {
-      if (binding.getScope() instanceof EagerSingletonAnnotation) {
-        promises.push(this.get(binding.getKey()));
+      const scope = binding.getScope();
+      if (scope instanceof SingletonAnnotation) {
+        const promise = this.get(binding.getKey());
+        if (isPromise(promise)) {
+          promise.then((res: Key) => {
+            const key = binding.getKey();
+            scope.addInstance(key, res);
+          });
+        }
+        promises.push(promise);
       }
     });
 
