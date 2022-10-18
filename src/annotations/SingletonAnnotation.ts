@@ -7,7 +7,6 @@ export class SingletonAnnotation implements Scope {
   public instances: Record<string, Promise<Key> | Key> = {};
 
   scope(key: Key, unscopedProvider: Provider): Provider {
-    // const instances: Record<string, Promise<Key> | Key> = {};
     return () => {
       const rawKey = key.getRawKey();
       let instance = this.instances[rawKey];
