@@ -5,12 +5,16 @@ import { Key } from './Key';
 import { Provider } from './provider';
 import { Resolver } from './resolver';
 
-function isPromise(p: any) {
-  if (p !== null && typeof p === 'object' && typeof p.then === 'function' && typeof p.catch === 'function') {
-    return true;
-  }
+const isNil = (p: unknown): p is Exclude<unknown, null | undefined> => {
+  return p === null || typeof p === 'undefined';
+};
 
-  return false;
+const isObject = (p: unknown): p is Object => {
+  return typeof p === 'object';
+};
+
+function isPromise(p: unknown): boolean {
+  return !isNil(p) && isObject(p) && 'then' in p && 'catch' in p;
 }
 
 export class Injector extends EventEmitter2 {
@@ -29,15 +33,15 @@ export class Injector extends EventEmitter2 {
     const promises: Array<Promise<Array<Key>>> = [];
     this._binder._bindings.forEach((binding) => {
       const scope = binding.getScope();
+      const key = binding.getKey();
       if (scope instanceof SingletonAnnotation) {
-        const promise = this.get(binding.getKey());
-        if (isPromise(promise)) {
-          promise.then((res: Key) => {
-            const key = binding.getKey();
+        const value = this.get(key);
+        if (isPromise(value)) {
+          value.then((res: Key) => {
             scope.addInstance(key, res);
           });
         }
-        promises.push(promise);
+        promises.push(value);
       }
     });
 
