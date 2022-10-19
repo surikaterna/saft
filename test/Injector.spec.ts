@@ -55,11 +55,11 @@ describe('Injector', () => {
       const injector = new Injector(new FirstModule(), new AnotherModule());
       const childInjector = injector.createChildInjector(new ChildModule());
       const partDone = after(2, done);
-      childInjector.once('ready', async () => {
+      childInjector.once('ready', () => {
         expect(childInjector.get('childAsyncSingleton')).toBe(5);
         partDone();
       });
-      injector.once('ready', async () => {
+      injector.once('ready', () => {
         expect(injector.get('asyncSingleton')).toBe(3);
         expect(injector.get('singletonAsyncPromises')).toBe(2);
         expect(injector.get('singletonUsingInject')).toBe('non-singleton promise injected to singleton');
