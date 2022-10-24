@@ -46,34 +46,28 @@ export class Resolver {
       return binding.getProvider();
     }
 
-    const bindings = dependencies.map(this.getBindingFromRawKey);
-    const hasPromise = bindings.some(this.checkBindingHasPromise);
+    const dependencyProviders = dependencies.map(dep => this.getProvider(dep));
+    const dependencyBindings = dependencies.map(dep => this._binder.getBinding(dep.getRawKey()));
+    const params = dependencyProviders.map(this.createGetProviderParams(dependencies));
+    const hasPromise = dependencyBindings.some(this.checkBindingHasPromise);
 
     if (hasPromise) {
       binding.setAsPromise(true);
     }
 
-    return this.createProvider(binding, dependencies, hasPromise);
+    return this.createProvider(binding, params, hasPromise);
   }
-
-  private getBindingFromRawKey = (key: Key): Binding | undefined => this._binder.getBinding(key.getRawKey());
 
   private checkBindingHasPromise = (binding?: Binding): boolean => binding?.asPromise() ?? false;
 
   private createProvider = (
     binding: Binding,
-    dependencies: Array<Key>,
+    params: Array<Provider>,
     hasPromise: boolean
-  ) => () => {
-    const providers = dependencies.map(this.getProviderFromKey);
-    const params = providers.map(this.createGetProviderParams(dependencies));
-
-    return hasPromise
-      ? Promise.all(params).then((resolvedParams) => this.applyToProvider(binding, resolvedParams))
-      : this.applyToProvider(binding, params);
-  };
-
-  private getProviderFromKey = (key: Key) => this.getProvider(key);
+  ) => () =>
+      hasPromise
+        ? Promise.all(params).then((resolvedParams) => this.applyToProvider(binding, resolvedParams))
+        : this.applyToProvider(binding, params);
 
   private createGetProviderParams = (dependencies: Array<Key>) => (provider: Provider, index: number) => dependencies[index]?.isProvider()
     ? provider
