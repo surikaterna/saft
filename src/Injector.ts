@@ -5,17 +5,13 @@ import { Key } from './Key';
 import { Provider } from './provider';
 import { Resolver } from './resolver';
 
-const isNil = (p: unknown): p is Exclude<unknown, null | undefined> => {
-  return p === null || typeof p === 'undefined';
-};
-
 const isObject = (p: unknown): p is Object => {
   return typeof p === 'object';
 };
 
-function isPromise(p: unknown): boolean {
-  return !isNil(p) && isObject(p) && 'then' in p && 'catch' in p;
-}
+const isPromise = (p: unknown): boolean => {
+  return isObject(p) && 'then' in p && 'catch' in p;
+};
 
 export class Injector extends EventEmitter2 {
   _modules: Array<Module>;

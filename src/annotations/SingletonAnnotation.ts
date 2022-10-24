@@ -4,7 +4,7 @@ import { Provider } from '../provider';
 
 export class SingletonAnnotation implements Scope {
   public static _name = 'SingletonAnnotation';
-  public instances: Record<string, Promise<Key> | Key> = {};
+  private instances: Record<string, Promise<Key> | Key> = {};
 
   scope(key: Key, unscopedProvider: Provider): Provider {
     return () => {
