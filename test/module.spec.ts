@@ -116,6 +116,25 @@ describe('Injector', () => {
       const c2 = injector.get('counter');
       expect(c1).toBe(c2);
     });
+
+    it('should provide information about method unsatisfied parameters for argument length mismatch', (done) => {
+      class MyModule {
+        @Singleton()
+        @Provides('counter')
+        @Inject('a', 'b')
+        getCounter(_a: string) {
+        }
+      }
+
+      try {
+        new Injector(new MyModule());
+        done(new Error('Should give error on unsatisfied parameters for argument length mismatch '))
+      } catch (err: any) {
+        expect(err.message).toBe(`Function "getCounter" for "@Provides('counter')" has unsatisfied parameters. @Inject specifies 2 keys and function expects 1 parameters`)
+        done();
+      }
+    });
+
     it('should call configure on module', (done) => {
       class MyModule {
         configure() {
