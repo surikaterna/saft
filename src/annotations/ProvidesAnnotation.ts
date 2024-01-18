@@ -42,7 +42,7 @@ export class ProvidesAnnotation extends BindingAnnotation {
     const keysLength = inject.getKeys().length;
 
     if (keysLength !== fnLength) {
-      throw new Error(`@Provides function has unsatisfied parameters. @Inject specifies ${keysLength} keys and function expects ${fnLength} parameters`);
+      throw new Error(`Function "${String(targetKey)}" for "@Provides('${this.key}')" has unsatisfied parameters. @Inject specifies ${keysLength} keys and function expects ${fnLength} parameters`);
     }
 
     return this.bindToScope({ binder, fn, scope, target, keys: inject.getKeys() });
